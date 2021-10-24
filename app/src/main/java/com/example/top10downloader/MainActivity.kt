@@ -35,12 +35,15 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "OnPostExecute: Parameter is $result")
             }
 
+
+            //sdfghjdfgh
             override fun doInBackground(vararg url: String): String {
                 Log.d(TAG, "doInBackground: starts with ${url[0]}")
                 val rssFeed = downloadXML(url[0])
                 if (rssFeed.isEmpty()) {
                     Log.e(TAG,"doInBackground: Error downloading")
                 }
+                //fghjk
                 return rssFeed
             }
         }
