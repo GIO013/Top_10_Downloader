@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
                 return rssFeed
             }
+
             private fun downloadXML(urlPath: String?): String {
                 val xmlResult = StringBuilder()
 
@@ -86,13 +87,17 @@ class MainActivity : AppCompatActivity() {
 //                    Log.e(TAG, "Unknown error: ${e.message}")
 //                }
 
-                } catch (e:Exception) {
+                } catch (e: Exception) {
                     val errorMessage: String
                     when (e) {
-                        is MalformedURLException -> errorMessage = "downloadXML: Invalid URL ${e.message}"
-                        is IOException -> errorMessage = "downloadXML: IO Exception reading data: ${e.message}"
-                        is SecurityException -> { e.printStackTrace()
-                            errorMessage = "downloadXML: Security exception. Needs permission? ${e.message}"
+                        is MalformedURLException -> errorMessage =
+                            "downloadXML: Invalid URL ${e.message}"
+                        is IOException -> errorMessage =
+                            "downloadXML: IO Exception reading data: ${e.message}"
+                        is SecurityException -> {
+                            e.printStackTrace()
+                            errorMessage =
+                                "downloadXML: Security exception. Needs permission? ${e.message}"
                         }
                         else -> errorMessage = "Unknown error: ${e.message}"
                     }
