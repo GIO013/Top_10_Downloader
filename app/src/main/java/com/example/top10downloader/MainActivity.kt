@@ -12,6 +12,24 @@ import java.net.MalformedURLException
 import java.net.URL
 import kotlin.Exception
 
+
+class FeedEntry {
+    var name: String =""
+    var artist: String = ""
+    var releaseDate: String = ""
+    var summary: String = ""
+    var imageURL: String = ""
+
+    override fun toString(): String {
+        return """
+            name = $name
+            artist = $artist
+            releaseDate = $releaseDate
+            imageURL = $imageURL
+            """.trimIndent()
+    }
+}
+
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +47,11 @@ class MainActivity : AppCompatActivity() {
             AsyncTask<String, Void, String>() {   //TODO AsyncTask კარგად უნდა გავიარო
             private val TAG = "DownloadData"
 
-            override fun onPostExecute(result: String?) {
+            override fun onPostExecute(result: String) {
                 super.onPostExecute(result)
-                Log.d(TAG, "OnPostExecute: Parameter is $result")
+//                Log.d(TAG, "OnPostExecute: Parameter is $result")
+                val parseApplications = ParseApplications()
+                parseApplications.parse(result)
             }
 
 
@@ -46,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             private fun downloadXML(urlPath: String?): String {
+//                return URL(urlPath).readText() // იგივე შედეგზე გავყავართ, რა კოდიც ქვემოთ წერია
                 val xmlResult = StringBuilder()
 
                 try {
